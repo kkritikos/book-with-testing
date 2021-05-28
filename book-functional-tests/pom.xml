@@ -12,7 +12,7 @@
   <name>Book REST API Functional Tests</name>
 
   <properties>
-    <servlet.port>8080</servlet.port>
+    <servlet.port>8000</servlet.port>
   </properties>
 
   <dependencies>

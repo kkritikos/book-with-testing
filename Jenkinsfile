@@ -13,11 +13,11 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'mvn verify' 
+                sh 'mvn verify -P tomcat8x' 
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml' 
+                    junit 'book-functional-tests/target/failsafe-reports/*.xml' 
                 }
             }
         }

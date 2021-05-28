@@ -28,7 +28,7 @@ public interface TestLifecycleLogger {
     @BeforeAll
 	public static void setup() {
 		// Setting BaseURI once
-		baseURI = "http://localhost:8080";
+		baseURI = "http://localhost:8000";
 		// Setting BasePath once
 		basePath ="/book";
 		// Setting authentication

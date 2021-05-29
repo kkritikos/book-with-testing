@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                sh "mvn -B -DskipTests -DskipITs install -Dcargo.hostname=${hostname} -Dcargo.protocol=${protocol} -Dcargo.port=${port} -Dcargo.user=${user} -Dcargo.pass=${pass}"
+                sh "mvn -B -DskipTests -DskipITs install -Dcargo.hostname=${hostname} -Dcargo.protocol=${protocol} -Dcargo.servlet.port=${port} -Dcargo.remote.username=${user} -Dcargo.remote.password=${pass}"
             }
         }
         

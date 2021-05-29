@@ -6,13 +6,19 @@ pipeline {
         }
     }
     stages {
+    	stage('Zero') {
+            steps {
+                echo "${hostname}"
+                echo "${HOSTNAME}"
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') { 
-            steps {
+            steps {	
                 sh 'mvn verify -P tomcat8x' 
             }
             post {
@@ -23,7 +29,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                sh 'mvn -B -DskipTests -DskipITs install -Dremote.hostname=35.167.191.96 -Dremote.protocol=http -Dremote.port=8080 -Dremote.user=tomcat -Dremote.pass=kleo315/'
+                sh "mvn -B -DskipTests -DskipITs install -Dcargo.hostname=${hostname} -Dcargo.protocol=${protocol} -Dcargo.port=${port} -Dcargo.user=${user} -Dcargo.pass=${pass}"
             }
         }
         

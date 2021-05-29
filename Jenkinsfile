@@ -21,5 +21,10 @@ pipeline {
                 }
             }
         }
+        stage('Install') {
+            steps {
+                sh 'mvn -B -DskipTests -DskipITs install -Dremote.hostname=34.218.248.79 -Dremote.protocol=http -Dremote.port=8080 -Dremote.user=tomcat -Dremote.pass=kleo315/'
+            }
+        }
     }
 }

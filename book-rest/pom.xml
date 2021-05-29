@@ -41,6 +41,45 @@
 				<warName>${project.parent.artifactId}</warName>
 				</configuration>
 			</plugin>
+			<plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven3-plugin</artifactId>
+        <configuration>
+		        <container>
+		          <containerId>tomcat8x</containerId>
+		          <type>remote</type>
+		        </container>
+		        <configuration>
+		          <type>runtime</type>
+		          <properties>
+		            <cargo.hostname>${remote.hostname}</cargo.hostname>
+		            <cargo.protocol>${remote.protocol}</cargo.protocol>
+		            <cargo.servlet.port>${remote.port}</cargo.servlet.port>
+		            <cargo.remote.username>${remote.user}</cargo.remote.username>
+		            <cargo.remote.password>${remote.pass}</cargo.remote.password>
+		          </properties>
+		        </configuration>
+		          <deployables>
+		            <deployable>
+		                <groupId>${project.groupId}</groupId>
+		                <artifactId>book-rest</artifactId>
+		                <type>war</type>
+		                <properties>
+		            		<context>book</context>
+		        		</properties>
+              		</deployable>
+		          </deployables>
+      		  </configuration>
+        <executions>
+          <execution>
+            <id>deploy-cargo</id>
+            <phase>install</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
   
@@ -170,8 +209,6 @@
 		<artifactId>sqlite-jdbc</artifactId>
 		<version>3.34.0</version>
 	</dependency>
-	
-    
   </dependencies>
   
   <pluginRepositories>

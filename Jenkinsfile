@@ -1,4 +1,11 @@
 pipeline {
+	parameters {
+	    password(name: 'pass', defaultValue: 'kleo315/', description: 'A secret password')
+	    string(name: 'hostname', defaultValue: '35.167.191.96', description: '')
+	    string(name: 'port', defaultValue: '8080', description: '')
+	    string(name: 'protocol', defaultValue: 'http', description: '')
+	    string(name: 'user', defaultValue: 'tomcat', description: '')
+	}
     agent {
         docker {
             image 'maven:3.8.1-adoptopenjdk-11'

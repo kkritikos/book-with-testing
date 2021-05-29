@@ -48,6 +48,7 @@
 		        <container>
 		          <containerId>tomcat8x</containerId>
 		          <type>remote</type>
+		          <timeout>600000</timeout>
 		        </container>
 		        <configuration>
 		          <type>runtime</type>

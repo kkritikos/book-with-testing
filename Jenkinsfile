@@ -50,6 +50,7 @@ pipeline {
 	            branch 'develop'
 	        }
             steps {
+            	echo 'Hello Jenkins!'
                 sh "mvn -B -DskipTests -DskipITs install -Dcargo.hostname=${hostname} -Dcargo.protocol=${protocol} -Dcargo.servlet.port=${port} -Dcargo.remote.username=${user} -Dcargo.remote.password=${pass}"
             }
         }

@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test_Develop') {
         	when {
-	            branchName 'develop'
+	            branch 'develop'
 	        } 
             steps {	
                 sh 'mvn verify -P tomcat8x' 
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Test_Theme') { 
             when {
-	            branchName 'theme'
+	            branch 'theme'
 	        }
             steps {	
                 sh 'mvn verify -P tomcat8x' 
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Install') {
         	when {
-	            branchName 'develop'
+	            branch 'develop'
 	        }
             steps {
                 sh "mvn -B -DskipTests -DskipITs install -Dcargo.hostname=${hostname} -Dcargo.protocol=${protocol} -Dcargo.servlet.port=${port} -Dcargo.remote.username=${user} -Dcargo.remote.password=${pass}"

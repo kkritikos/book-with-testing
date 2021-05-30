@@ -6,6 +6,11 @@ pipeline {
         }
     }
     stages {
+    	stage('Init') {
+            steps {
+                echo "Build is starting"
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -27,8 +32,11 @@ pipeline {
 	        }
             steps {
                 sh "mvn -B -DskipTests -DskipITs install -Dcargo.hostname=${hostname} -Dcargo.protocol=${protocol} -Dcargo.servlet.port=${port} -Dcargo.remote.username=${user} -Dcargo.remote.password=${pass}"
+                sh('''
+                    git config --local credential.helper "!f() { echo username=\\$GIT_AUTH_USR; echo password=\\$GIT_AUTH_PSW; }; f"
+                    git push origin HEAD:$TARGET_BRANCH
+                ''')
             }
         }
-        
     }
 }

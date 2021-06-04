@@ -8,7 +8,7 @@ pipeline {
     stages {
     	stage('Init') {
             steps {
-                echo "Build is starting!!!"
+                echo "Build is starting!!! Let's see if chaining is possible"
             }
         }
         stage('Build') {

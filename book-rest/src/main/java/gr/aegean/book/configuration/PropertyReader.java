@@ -54,6 +54,11 @@ public class PropertyReader {
 			login = getDefaultValueIfNull(props.getProperty("login"),"");
 			pwd = getDefaultValueIfNull(props.getProperty("pwd"),"");
 		}
+		try {
+			String altDbHost = System.getenv("DB_HOST");
+			if (altDbHost != null && !altDbHost.equals("")) dbHost = altDbHost; 
+		}
+		catch(Exception e) {}
 	}
 	
 	public static String getDbName() {

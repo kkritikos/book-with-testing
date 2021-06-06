@@ -151,6 +151,7 @@ public class BookService {
 	}
 	
 	@PUT
+	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	@Path ("/admin/config")
 	public Response configure(@FormParam("dbHost") String dbHost) throws NotFoundException, MyInternalServerErrorException {
 		// TODO Auto-generated method stub

@@ -64,6 +64,10 @@ public class PropertyReader {
 		return dbHost;
 	}
 	
+	public static void setDbHost(String dbHost) {
+		PropertyReader.dbHost = dbHost;
+	}
+	
 	public static String getDbPort() {
 		return dbPort;
 	}

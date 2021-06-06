@@ -1,7 +1,9 @@
 package gr.aegean.book.service;
 
+import java.net.InetAddress;
 import java.util.List;
 
+import gr.aegean.book.configuration.PropertyReader;
 import gr.aegean.book.domain.Book;
 import gr.aegean.book.exception.BadRequestException;
 import gr.aegean.book.exception.MyInternalServerErrorException;
@@ -17,6 +19,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -145,5 +148,23 @@ public class BookService {
 			return Response.ok().build();
 		}
 		else throw new NotFoundException();
+	}
+	
+	@PUT
+	@Path ("/admin/config")
+	public Response configure(@FormParam("dbHost") String dbHost) throws NotFoundException, MyInternalServerErrorException {
+		// TODO Auto-generated method stub
+		logger.info("Got dbHost: " + dbHost);
+		
+		try {
+			InetAddress.getByName(dbHost);
+		}
+		catch(Exception e) {
+			throw new BadRequestException("Not a valid host has been given");
+		}
+		
+		PropertyReader.setDbHost(dbHost);
+		
+		return Response.ok().build();
 	}
 }

@@ -30,6 +30,7 @@
     <web-resource-collection>
     	<web-resource-name>REST API requires authentication</web-resource-name>
         <url-pattern>/rest/books/book/admin/*</url-pattern>
+        <url-pattern>/rest/books/admin/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
         <role-name>admin</role-name>

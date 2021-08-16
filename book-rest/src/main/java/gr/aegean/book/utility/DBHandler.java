@@ -112,7 +112,7 @@ public class DBHandler {
 			if (hasTitle) query += "title = '" + title + "' ";
 			if (hasAuthors) {
 				if (hasTitle) query += " and (";
-				query += "authors LIKE '" + authors.get(0) + "'";
+				query += "authors LIKE '%" + authors.get(0) + "%'";
 				for (int i = 1; i < authors.size(); i++) 
 					query += " or authors LIKE '" + authors.get(i) + "'";
 				if (hasTitle) query += ")";
